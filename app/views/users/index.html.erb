@@ -18,7 +18,6 @@
       </table>
       <%= link_to "マイページ編集", edit_user_path(@user.id) %>
 
-
 <div class="row">
   <a class="btn btn-outline-secondary btn-block fas fa-user-cog edit_user_23981" href="/users/23981/edit"></a>
 </div>
@@ -38,22 +37,23 @@
       <% end %>
     </div>
     <div class="col-md-8 offset-md-1">
-      <h2>Book detail</h2>
+      <h2>Users</h2>
       <table class="table table-hover table-inverse">
-          <tbody>
+          <thead>
             <tr>
-              <td>
-                <%= link_to user_path(@user.id) do %>
-                  <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image-.png" %>
-                  <%= @user.name %>
-                <% end %>
-              </td>
-              <td><%= @book.title %></td>
-              <td><%= @book.body %></td>
-              <td><%= link_to "Edit", edit_book_path(@book.id) %></td>
-              <td><%= link_to "Destroy", book_path, method: :delete, data: {confirm: "本当に消しますか？"} %></td>
+              <th>image</th>
+              <th>name</th>
             </tr>
-          </tbody>
+          </thead>
+          <% @users.each do |user| %>
+            <tbody>
+              <tr>
+                <td><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image-.png" %></td>
+                <td><%= user.name %></td>
+                <td><%= link_to "Show", user_path(user.id) %></td>
+              </tr>
+            </tbody>
+          <% end %>
       </table>
     </div>
   </div>
